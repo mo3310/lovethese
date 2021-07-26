@@ -1,0 +1,14 @@
+<% @posts.each do |post| %>
+<div>
+  <%= link_to post_path(post.id) do %>
+    <%= attachment_image_tag post, :image %>
+  <% end %>
+
+  <p>投稿：<i class="fas fa-user"></i></p>
+  <!--<p>投稿：<%= image_tag('sample-author1.jpg') %></p>-->
+  <p>title：<%= post.title %></p>
+  <p>body：<%= post.body %></p>
+  <p>投稿者：<%= post.user.name %></p>
+  <p><%= link_to "#{post.post_comments.count} コメント", post_path(post.id) %></p>
+</div>
+<% end %>
