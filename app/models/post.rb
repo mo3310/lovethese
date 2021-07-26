@@ -1,10 +1,14 @@
 class Post < ApplicationRecord
-  belongs_to :user
+  
   attachment :image
+  belongs_to :user
   has_many :tag_maps, dependent: :destroy
   has_many :tags, through: :tag_maps
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+
+  validates :body, presence: true
+  validates :image, presence: true
 
   def favorited_by?(user)
     favorites.where(user_id: user.id).exists?

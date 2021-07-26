@@ -7,8 +7,12 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    @post.save
-    redirect_to posts_path
+    if @post.save
+      redirect_to posts_path
+    else
+      render :new
+    end
+
     # # 投稿とタグに関する記述 書き換え検討中
     # @post = current_user.posts.new(post_params)
     # # tag_list = params[:post][:tag_name].split(nil)
