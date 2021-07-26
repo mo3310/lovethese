@@ -21,8 +21,8 @@ class PostsController < ApplicationController
   end
 
   def index
+    @posts = Post.page(params[:page]).reverse_order
     @tag_list = Tag.all              #ビューでタグ一覧を表示するために全取得
-    @posts = Post.all                #ビューで投稿一覧を表示するために全取得
     @post = current_user.posts.new   #ビューのform_withのmodelに使う
   end
 
