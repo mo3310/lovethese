@@ -1,0 +1,14 @@
+<% posts.each do |post| %>
+<div>
+  <%= link_to post_path(post.id) do %>
+  <%= attachment_image_tag post, :image, size: "300x300" %>
+  <% end %>
+
+  <p>投稿者：<%= attachment_image_tag post.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %></p>
+  <p>title：<%= post.title %></p>
+  <p>body：<%= post.body %></p>
+  <p>投稿者：<%= post.user.name %></p>
+  <p><%= link_to "#{post.post_comments.count} コメント", post_path(post.id) %></p>
+</div>
+<% end %>
+<%= paginate posts %>

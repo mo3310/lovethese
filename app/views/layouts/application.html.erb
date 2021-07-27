@@ -13,52 +13,70 @@
     <header class="bg-warning text-white shadow-sm">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
-          <a class="navbar-brand p-3" href="/"><%= image_tag 'lt-logo.png', :size => '70x70' %></a>
+          <a class="navbar-brand" href="/"><%= image_tag 'lt-logo.png', :size => '70x70' %></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav ml-auto">
           <% if user_signed_in? %>
-          <li class="nav-item">
-            <%= link_to '投稿フォーム', new_post_path, class: 'nav-link text-faded' %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-faded' %>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'マイページ', user_path(current_user.id), class: 'nav-link text-faded' %>
-          </li>
+            <li style="padding-right: 15px;">
+              <%= link_to posts_path do %>
+              <i class="fas fa-comments", style="color: white;"> PostsList</i>
+              <% end %>
+            </li>
+            <li style="padding-right: 15px;">
+              <%= link_to new_post_path do %>
+              <i class="fas fa-bullhorn", style="color: white;"> NewPost</i>
+              <% end %>
+            </li>
+            <li style="padding-right: 15px;">
+              <%= link_to user_path(current_user) do %>
+              <i class="fas fa-home", style="color: white;"> MyPage</i>
+              <% end %>
+            </li>
+            <li style="padding-right: 15px;">
+              <%= link_to destroy_user_session_path, method: :delete do %>
+              <i class="fas fa-sign-out-alt", style="color: white;"> Logout</i>
+              <% end %>
+            </li>
           <% else %>
-          <li class="nav-item">
-            <%= link_to "About", about_path, class: 'nav-link text-faded' %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Sign up", new_user_registration_path, class: 'nav-link text-faded' %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Log in", new_user_session_path, class: 'nav-link text-faded' %>
-          </li>
+            <li style="padding-right: 15px;">
+              <%= link_to about_path do %>
+              <i class="fas fa-question", style="color: white;"> About</i>
+              <% end %>
+            </li>
+            <li style="padding-right: 15px;">
+             <%= link_to new_user_registration_path do %>
+              <i class="fas fa-user-plus", style="color: white;"> SignUp</i>
+              <% end %>
+            </li>
+            <li style="padding-right: 15px;">
+             <%= link_to new_user_session_path do %>
+              <i class="fas fa-sign-in-alt", style="color: white;"> Login</i>
+              <% end %>
+            </li>
+            <li style="padding-right: 15px;">
+              <%= link_to users_guest_sign_in_path, method: :post do %>
+              <i class="fas fa-splotch", style="color: white;"> GuestLogin</i>
+              <% end %>
+            </li>
           <% end %>
           </ul>
-        </div>
-
+          </div>
         </div>
       </nav>
     </header>
-
-    <main class="mb-auto">
-    <%= yield %>
-    </main>
-
-    <footer class="bg-warning text-white">
-      <div class="container mt-5">
-  	    <div class="row">
-    	    <div class="mx-auto"><p></p></div>
+    <div class="container px-5 px-sm-0">
+      <div class="success", style="color: green;"><%= flash[:success] %></div>
+      <%= yield %>
+    </div>
+    <footer class="footer mt-aute py-3 bg-warning text-white">
+      <div class="container">
+        <div class="row">
+  	    <div class="mx-auto"><p></p></div>
         </div>
       </div>
     </footer>
-
   </body>
 </html>

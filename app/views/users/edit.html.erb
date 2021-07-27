@@ -7,3 +7,7 @@
   <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
   <%= f.submit "変更を保存" %>
 <% end %>
+<div class="form-group">
+  <%= link_to "トップページ", root_path, class: 'btn btn-info btn block mb-4' %>
+  <%= link_to "アカウント削除", registration_path(@user), data: {confirm: "本当に削除しますか？"}, method: :delete, class: 'btn btn-danger btn block mb-4' %>
+</div>
