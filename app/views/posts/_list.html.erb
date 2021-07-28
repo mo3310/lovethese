@@ -1,14 +1,26 @@
-<% posts.each do |post| %>
-<div>
-  <%= link_to post_path(post.id) do %>
-  <%= attachment_image_tag post, :image, size: "300x300" %>
+<div class="card-list-containar py-5">
+  <% posts.each do |post| %>
+  <div class="card w-50 mx-auto mt-4 shadow-lg">
+    <%= link_to post_path(post.id) do %>
+    <%= attachment_image_tag post, :image, class:"card-img-top"; %>
+    <% end %>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-2">
+          <%= attachment_image_tag post.user, :profile_image, :fill, 50,50, fallback: "no_image.jpg", class:"mt-3 rounded-circle"; %>
+        </div>
+        <div class="col-10">
+          <p class="card-title">
+            <%= link_to(post_path(post.id), class:"text-dark") do %>
+            <strong><i class="far fa-flag", style="color: #f0ad4e;"></i><span> <%= post.title %></span></strong>
+            <% end %>
+          </p>
+          <p class="card-text"><i class="fas fa-pen", style="color: #f0ad4e;"></i><%= post.body %></p>
+          <span><i class="fas fa-user", style="color: #f0ad4e;"></i> By <%= post.user.name %> | </span>
+          <span><%= link_to "#{post.post_comments.count} コメント", post_path(post.id), class:"text-dark" %></span>
+        </div>
+      </div>
+    </div>
   <% end %>
-
-  <p>投稿者：<%= attachment_image_tag post.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %></p>
-  <p>title：<%= post.title %></p>
-  <p>body：<%= post.body %></p>
-  <p>投稿者：<%= post.user.name %></p>
-  <p><%= link_to "#{post.post_comments.count} コメント", post_path(post.id) %></p>
+  <%= paginate posts %>
 </div>
-<% end %>
-<%= paginate posts %>

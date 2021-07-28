@@ -1,18 +1,27 @@
-<h1>投稿フォーム</h1>
-
-<% if @post.errors.any? %>
-  <%= @post.errors.count %>件のエラーが発生しました
-  <% @post.errors.full_messages.each do |message| %>
-    <%= message %>
-  <% end %>
-<% end %>
-
-<%= form_with model: @post, local:true do |f| %>
-  <h4>画像</h4>
-  <%= f.attachment_field :image %>
-  <h4>title</h4>
-  <%= f.text_field :title %>
-  <h4>body</h4>
-  <%= f.text_area :body %>
-  <%= f.submit '投稿' %>
-<% end %>
+<div class="containar">
+  <div class="row no-gutters">
+    <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
+      <h5 class="text-dark bg-light p-4 mb-0">投稿フォーム</h5>
+      <div class="form-body p-4">
+        <% if @post.errors.any? %>
+          <%= @post.errors.count %>件のエラーが発生しました
+          <% @post.errors.full_messages.each do |message| %>
+            <%= message %>
+          <% end %>
+        <% end %>
+        <%= form_with model: @post, local:true do |f| %>
+          <%= f.attachment_field :image, class: "w-100" %>
+          <div class="input-group mb-3 mt-4">
+            <div class="input-group-prepend">
+              <span class="input-group-text" aria-hidden="true"><i class="fas fa-building"></i></span>
+            </div>
+            <%= f.text_field :title, class:"form-control", placeholder:"タイトル" %>
+          </div>
+          <%= f.text_area :body, class:"form-control", rows:"3", placeholder:"コメント" %>
+          <hr>
+          <%= f.submit '投稿', class:"btn btn-lg btn-block btn-info mt-4" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
