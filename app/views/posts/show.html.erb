@@ -5,42 +5,21 @@
   <p>投稿者：<%= @post.user.name %></p>
   <p>投稿日時：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
   <% if @post.user == current_user %>
-    <%= link_to "削除", post_path(@post), method: :delete %>
+    <%= link_to "削除", post_path(@post), method: :delete, data: {confirm: "本当に削除しますか？"} %>
   <% end %>
-
-  <% if @post.favorited_by?(current_user) %>
-    <p>
-      <%= link_to post_favorites_path(@post), method: :delete do %>
-        ♥<%= @post.favorites.count %> いいね
-      <% end %>
-    </p>
-    <% else %>
-    <p>
-      <%= link_to post_favorites_path(@post), method: :post do %>
-        ♡<%= @post.favorites.count %> いいね
-      <% end %>
-    </p>
-  <% end %>
-
+  <div id="favorite_buttons_<%= @post.id %>">
+    <%= render "favorites/favorite", post: @post %>
+  </div>
 </div>
-
 <div class="comments">
 <p>コメント件数：<%= @post.post_comments.count %></p>
-<% @post.post_comments.each do |post_comment| %>
-  <p><%= attachment_image_tag post_comment.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg", size: "50x50" %></p>
-  <%= post_comment.user.name %>
-  <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
-  <% if post_comment.user == current_user %>
-  <div class="comment-delete">
-    <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete %>
-  </div>
-  <% end %>
-<% end %>
 </div>
-
+<div id="post_comment_area">
+      <%= render "post_comments/comment", post: @post %>
+    </div>
 <div class="new-comment">
-<%= form_with(model:[@post, @post_comment], local: true) do |f| %>
-  <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
-  <%= f.submit "送信する" %>
+<%= form_with(model:[@post, @post_comment], remote: true) do |f| %>
+  <%= f.text_area :comment, rows:'5', autofocus: true, placeholder: "コメントをここに" %>
+  <%= f.submit "送信" %>
 <% end %>
 </div>

@@ -2,28 +2,26 @@
   <title>LoveThese!</title>
 </head>
 <div style="color: green;"><center><%= flash[:notice] %></center></div>
-<body>
-  <main>
-    <p id="notice"></p>
-      <div class="container">
-        <div class="row">
-          <div style="margin:0 auto;">
-          <!--<div class="mx-auto col-10 col-sm-10 col-lg-8 col-xl-6">-->
-            <div class="bg-image">
-            <div class="bg-mask">
-            <h1>welcome to <strong>LoveThese!</strong></h1>
+<main>
+    <div class="container">
+      <div class="row">
+        <div style="margin:0 auto;">
+          <div class="bg-image">
+          <div class="bg-mask">
+            <div class="px-3 mx-auto", style="color: #16214d;">
+              <h1>welcome to <strong>LoveThese!</strong></h1>
             <p></p>
             <p>Let's share what you like!</p><br>
+            </div>
             <div class="btn-wrapper col-10 mx-auto">
               <div class="row">
-                <p class = "ml-4"><a class="btn btn-info btn-sm sign_in" href="/users/sign_in">Log in</a></p>
-                <p class = "ml-4"><a class="btn btn-success btn-sm sign_up" href="/users/sign_up">Sign Up</a></p>
-            </div>
-            </div>
+                <p class = "ml-4"><a class="btn btn-warning sign_in" href="/users/sign_in">ログイン</a></p>
+                <p class = "ml-4"><a class="btn btn-success sign_up" href="/users/sign_up">新規登録</a></p>
               </div>
             </div>
           </div>
         </div>
       </div>
-  </main>
-</body>
+    </div>
+  </div>
+</main>
