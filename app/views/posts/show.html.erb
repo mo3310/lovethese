@@ -1,25 +1,44 @@
-<div class="post-body">
-  <%= attachment_image_tag @post, :image, size: "300x300" %>
-  <p>title：<%= @post.title %></p>
-  <p>body：<%= @post.body %></p>
-  <p>投稿者：<%= @post.user.name %></p>
-  <p>投稿日時：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
-  <% if @post.user == current_user %>
-    <%= link_to "削除", post_path(@post), method: :delete, data: {confirm: "本当に削除しますか？"} %>
-  <% end %>
-  <div id="favorite_buttons_<%= @post.id %>">
-    <%= render "favorites/favorite", post: @post %>
-  </div>
-</div>
-<div class="comments">
-<p>コメント件数：<%= @post.post_comments.count %></p>
-</div>
-<div id="post_comment_area">
-      <%= render "post_comments/comment", post: @post %>
+<main class="mb-auto">
+<div class="card-list-containar py-5">
+  <div class="card w-75 mx-auto mt-4 shadow-lg">
+    <%= attachment_image_tag @post, :image, class:"card-img-top"; %>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-2">
+        <%= attachment_image_tag @post.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg", class:"mt-3 rounded-circle"; %>
+      </div>
+      <div class="col-10">
+        <p><i class="fas fa-bullhorn", style="color: #f0ad4e;"></i> <%= @post.title %></p>
+        <p><i class="fas fa-pen", style="color: #f0ad4e;"></i> <%= @post.body %></p>
+        <span><i class="far fa-user-circle", style="color: #f0ad4e;"></i> By <%= @post.user.name %> |</span>
+        <span><i class="far fa-calendar-alt", style="color: #f0ad4e;"></i> <%= @post.created_at.strftime('%Y/%m/%d') %> |</span>
+        <span><i class="far fa-comment-dots", style="color: #f0ad4e;"></i> <%= @post.post_comments.count %> |</span>
+        <span>
+        <% if @post.user == current_user %>
+          <%= link_to post_path(@post), :method => :delete, data: {confirm: "本当に削除しますか？"} do %>
+          <i class="fa fa-trash-alt", style="color: #f0ad4e;"></i>
+          <% end %>
+        <% end %>
+        </span>
+        <div id="favorite_buttons_<%= @post.id %>">
+          <%= render "favorites/favorite", post: @post %>
+        </div>
+      </div>
     </div>
+  </div>
+  <div class="comments card-text">
+    <div class="media border mb-3">
+      <div id="post_comment_area">
+      <%= render "post_comments/comment", post: @post %>
+      </div>
+    </div>
+  </div>
 <div class="new-comment">
 <%= form_with(model:[@post, @post_comment], remote: true) do |f| %>
-  <%= f.text_area :comment, rows:'5', autofocus: true, placeholder: "コメントをここに" %>
+  <%= f.text_area :comment, rows:'5', autofocus: true, placeholder: "コメント入力" %>
   <%= f.submit "送信" %>
 <% end %>
 </div>
+</div>
+</div>
+</main>

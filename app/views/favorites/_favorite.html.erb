@@ -4,6 +4,6 @@
 <% end %>
 <% else %>
 <%= link_to post_favorites_path(post), method: :post, remote: true do %>
-<div style="color: #2ca9e1;">♥<%= post.favorites.count %></div>
+<div style="color: #f0ad4e;">♡<%= post.favorites.count %></div>
 <% end %>
 <% end %>
