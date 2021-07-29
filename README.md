@@ -21,6 +21,9 @@ TwitterやInstagramなどのSNSを日常的に利用する人も多く、ネッ�
 ### テーブル定義書
 https://docs.google.com/spreadsheets/d/1xMKT1RIfrkAXXcdDFFHrXtmZ2GpMUFJ9LMKI8dQa3z8/edit?usp=sharing
 
+### ER図
+https://drive.google.com/file/d/1S6KAUynVxYmI2S5NyHArveX3jziGvHj2/view?usp=sharing
+
 ### チャレンジ機能一覧
 https://docs.google.com/spreadsheets/d/1rYCpCs0JJGK_GSpSL3BMkdNU_CHQ0aaCAvaAyf-_mEA/edit?usp=sharing
 
