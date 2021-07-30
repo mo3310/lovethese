@@ -8,8 +8,8 @@
         <%= attachment_image_tag @post.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg", class:"mt-3 rounded-circle"; %>
       </div>
       <div class="col-10">
-        <p><i class="fas fa-bullhorn", style="color: #f0ad4e;"></i> <%= @post.title %></p>
-        <p><i class="fas fa-pen", style="color: #f0ad4e;"></i> <%= @post.body %></p>
+        <p><i class="fas fa-pen", style="color: #f0ad4e;"></i> <%= @post.title %></p>
+        <p><i class="fas fa-bullhorn", style="color: #f0ad4e;"></i> <%= @post.body %></p>
         <span><i class="far fa-user-circle", style="color: #f0ad4e;"></i> By <%= @post.user.name %> |</span>
         <span><i class="far fa-calendar-alt", style="color: #f0ad4e;"></i> <%= @post.created_at.strftime('%Y/%m/%d') %> |</span>
         <span><i class="far fa-comment-dots", style="color: #f0ad4e;"></i> <%= @post.post_comments.count %> |</span>
@@ -20,9 +20,9 @@
           <% end %>
         <% end %>
         </span>
-        <div id="favorite_buttons_<%= @post.id %>">
+        <span id="favorite_buttons_<%= @post.id %>">
           <%= render "favorites/favorite", post: @post %>
-        </div>
+        </span>
       </div>
     </div>
   </div>

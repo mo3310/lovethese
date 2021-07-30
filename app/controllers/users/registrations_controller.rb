@@ -8,7 +8,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def ensure_normal_user
     if resource.email == 'guest@example.com'
       redirect_to root_path
-      flash[:success] = 'ゲストユーザーの編集・削除はできません。'
+      flash[:alert] = 'ゲストユーザーの編集・削除はできません。'
     end
   end
 

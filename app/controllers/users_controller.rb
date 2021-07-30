@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   def ensure_normal_user
     if current_user.email == 'guest@example.com'
       redirect_to root_path
-      flash[:success] = 'ゲストユーザーの編集・削除はできません。'
+      flash[:alert] = 'ゲストユーザーの編集・削除はできません。'
     end
   end
 
@@ -38,8 +38,8 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :profile_image)
   end
+
   def user_params_update
     params.require(:user).permit(:name, :email, :profile_image)
   end
-
 end

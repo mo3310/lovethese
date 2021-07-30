@@ -19,6 +19,14 @@
             <%= f.text_field :title, class:"form-control", placeholder:"タイトル" %>
           </div>
           <%= f.text_area :body, class:"form-control", rows:"3" %>
+          <div class="input-group mb-3 mt-4">
+            <div class="input-group-prepend">
+              <span class="input-group-text" aria-hidden="true"><i class="fas fa-tag"></i></span>
+            </div>
+          <%= f.text_field :tag_name, class:"form-control", placeholder:"タグ" %>
+          <h6 style="color: gray;">※間にスペースを入れることで複数のタグが入力できます。<br>
+            例：[音楽 スポーツ 芸術 . . .]</h6>
+          </div>
           <hr>
           <%= f.submit '投稿', class:"btn btn-lg btn-block btn-info mt-4" %>
         <% end %>

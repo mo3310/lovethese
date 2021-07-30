@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
-
   root 'homes#top'
-  get "home/about" => "homes#about" , as: "about"
+  get "home/about" => "homes#about", as: "about"
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     passwords: 'users/passwords'
@@ -16,9 +15,8 @@ Rails.application.routes.draw do
     resources :post_comments, only: [:create, :destroy]
   end
 
-  #タグによって絞り込んだ投稿を表示するアクションへのルーティング
+  # タグによって絞り込んだ投稿を表示するアクションへのルーティング
   resources :tags do
     get 'posts', to: 'posts#search'
   end
-
 end
